@@ -254,7 +254,8 @@ segs=[]
 for i,c in enumerate(CARDS):
     big=c["v"](); BW,BH=big.size
     tl=top_layer(c,i); bl=body_layer(c); zin=(i%2==0)
-    def gen(big=big,tl=tl,bl=bl,zin=zin,BW=BW,BH=BH):
+    first=(i==0)  # 첫 카드는 이탈 방어를 위해 텍스트를 페이드 없이 즉시 노출
+    def gen(big=big,tl=tl,bl=bl,zin=zin,BW=BW,BH=BH,first=first):
         for n in range(NF):
             t=n/(NF-1)
             wf=K-(K-1.0)*t if zin else 1.0+(K-1.0)*t
@@ -263,8 +264,10 @@ for i,c in enumerate(CARDS):
             vis=big.crop((int(x0),int(y0),int(x0+cw),int(y0+ch))).resize((W,VH),Image.LANCZOS)
             fr=Image.new("RGBA",(W,H),INK+(255,)); fr.paste(vis,(0,0))
             fr=Image.alpha_composite(fr,BG)
-            a1=min(1,n/12); fr=Image.alpha_composite(fr,fade(tl,ease(a1)))
-            a2=min(1,max(0,(n-9)/18)); dy=int(26*(1-ease(a2)))
+            a1=1 if first else min(1,n/12)
+            fr=Image.alpha_composite(fr,fade(tl,ease(a1)))
+            a2=1 if first else min(1,max(0,(n-9)/18))
+            dy=0 if first else int(26*(1-ease(a2)))
             b=fade(bl,ease(a2))
             if dy: b=b.transform((W,H),Image.AFFINE,(1,0,0,0,1,-dy))
             fr=Image.alpha_composite(fr,b)
