@@ -1,3 +1,4 @@
+import os
 from PIL import Image, ImageDraw, ImageFont
 S=1080
 INK=(8,13,24); AMBER=(242,179,61); FG=(238,243,250); UP=(55,217,160); DOWN=(255,91,110)
@@ -5,7 +6,9 @@ N="/usr/share/fonts/opentype/noto/NotoSansCJK-Black.ttc"
 M="/usr/share/fonts/truetype/dejavu/DejaVuSansMono-Bold.ttf"
 fb=lambda s: ImageFont.truetype(N,s,index=1)
 fm=lambda s: ImageFont.truetype(M,s)
-OUT="/mnt/user-data/outputs"
+ROOT=os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+OUT=os.path.join(ROOT,"assets")
+os.makedirs(OUT,exist_ok=True)
 
 def base(c0,c1):
     im=Image.new("RGB",(S,S),c0); d=ImageDraw.Draw(im)
@@ -62,5 +65,5 @@ for i,n in enumerate(["a","b","c"]):
     for j,sz in enumerate([110,56,32]):
         s=im.resize((sz,sz),Image.LANCZOS); pv.paste(s,(x+j*115,470-sz//2),s)
     pd.text((x,45),f"{n.upper()}",font=fb(30),fill=FG)
-pv.save("/home/claude/preview.png")
+pv.save(os.path.join(OUT,"profile-preview.png"))
 print("ok")

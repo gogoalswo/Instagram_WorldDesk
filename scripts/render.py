@@ -1,4 +1,4 @@
-import os, re, math, subprocess
+import os, re, math, subprocess, tempfile
 from PIL import Image, ImageDraw, ImageFont
 
 W, H = 1080, 1920
@@ -6,8 +6,12 @@ VH = 880                 # 그래픽 영역 높이
 FPS, DUR = 30, 5.0
 NF = int(FPS * DUR)
 K = 1.09                 # 켄번스 오버스캔
-OUT = "/home/claude/seg"
-os.makedirs(OUT, exist_ok=True)
+
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATE = "2026-07-23"      # 회차 날짜 (출력 경로 · 카드 date 필드와 맞출 것)
+OUT_DIR = os.path.join(ROOT, "out", DATE)
+os.makedirs(OUT_DIR, exist_ok=True)
+OUT = tempfile.mkdtemp(prefix="world-desk-seg-")
 
 INK=(8,13,24); LINE=(30,46,74); AMBER=(242,179,61); UP=(55,217,160)
 DOWN=(255,91,110); FG=(238,243,250); MUTE=(124,144,172); SUB=(195,210,228)
@@ -273,9 +277,10 @@ for i in range(1,6):
     fc.append(f"{prev}[{i}:v]xfade=transition=fade:duration={XF}:offset={off:.2f}{lab}")
     prev=lab; off+=DUR-XF
 filt=";".join(fc)
+out_path = os.path.join(OUT_DIR, f"world-desk-reels-{DATE.replace('-', '')}.mp4")
 subprocess.run(["ffmpeg","-y","-loglevel","error",*inp,"-f","lavfi","-t","30","-i","anullsrc=r=44100:cl=stereo",
     "-filter_complex",filt,"-map",prev,"-map","6:a","-shortest",
     "-c:v","libx264","-preset","slow","-crf","18","-pix_fmt","yuv420p","-r","30",
     "-c:a","aac","-b:a","96k","-movflags","+faststart",
-    "/mnt/user-data/outputs/world-desk-reels-20260723.mp4"],check=True)
-print("OK")
+    out_path],check=True)
+print("OK ->", out_path)
