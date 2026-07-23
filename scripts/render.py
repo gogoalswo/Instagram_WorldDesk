@@ -2,7 +2,7 @@ import os, re, math, subprocess, tempfile
 from PIL import Image, ImageDraw, ImageFont
 
 W, H = 1080, 1920
-VH = 880                 # 그래픽 영역 높이
+VH = 1440                # 그래픽(사진) 영역 높이 — 하단 안전영역(480px) 위까지 꽉 채움
 FPS, DUR = 30, 5.0
 NF = int(FPS * DUR)
 K = 1.09                 # 켄번스 오버스캔
@@ -129,14 +129,28 @@ def v_googl():
     return photo_bg("pichai.jpg", fx=0.5, fy=0.26, dark=0.30)       # 순다르 피차이 · 알파벳/구글 CEO (CC BY 4.0)
 
 def v_airbus():
-    return photo_bg("airbus_a350.jpg", fx=0.58, fy=0.48, dark=0.22) # AIRBUS A350 기체 (CC BY-SA 2.0)
+    return photo_bg("airbus_a350.jpg", fx=0.43, fy=0.48, dark=0.22) # AIRBUS A350 기체 (CC BY-SA 2.0)
 
 # ─────────── 오버레이 ───────────
+# 사진이 카드 전체(안전영역 위까지)를 채우므로, 텍스트가 얹히는 구간마다 어둡기를
+# 다르게 줘서 "스탯 숫자 위는 사진이 좀 보이되, 본문 아래로 갈수록 완전히 어두워짐"을 만든다.
+_FADE_PTS = [(560, 0), (700, 60), (824, 190), (900, 208), (1000, 222),
+             (1180, 236), (1300, 248), (1400, 255)]
+
+def _fade_alpha(y):
+    if y <= _FADE_PTS[0][0]: return _FADE_PTS[0][1]
+    if y >= _FADE_PTS[-1][0]: return _FADE_PTS[-1][1]
+    for (y0, a0), (y1, a1) in zip(_FADE_PTS, _FADE_PTS[1:]):
+        if y0 <= y <= y1:
+            t = (y - y0) / (y1 - y0)
+            return a0 + (a1 - a0) * t
+    return 255
+
 def bg_layer():
     l=Image.new("RGBA",(W,H),(0,0,0,0)); d=ImageDraw.Draw(l)
-    d.rectangle([0,VH,W,H],fill=INK+(255,))
-    for i in range(300):
-        y=VH-300+i; d.line([(0,y),(W,y)],fill=INK+(int(255*(i/300)**1.7),))
+    d.rectangle([0,_FADE_PTS[-1][0],W,H],fill=INK+(255,))
+    for y in range(_FADE_PTS[0][0], _FADE_PTS[-1][0]):
+        d.line([(0,y),(W,y)],fill=INK+(int(_fade_alpha(y)),))
     return l
 
 def top_layer(card,idx):
