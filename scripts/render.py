@@ -269,11 +269,11 @@ segs=[]
 for i,c in enumerate(CARDS):
     big=c["v"](); BW,BH=big.size
     tl=top_layer(c,i); bl=body_layer(c); zin=(i%2==0)
-    first=(i==0)  # 첫 카드는 이탈 방어를 위해 텍스트를 페이드 없이 즉시 노출
+    first=(i==0)  # 첫 카드는 이탈 방어를 위해 애니메이션(켄번스 줌 + 텍스트 페이드) 전부 생략, 처음부터 고정 노출
     def gen(big=big,tl=tl,bl=bl,zin=zin,BW=BW,BH=BH,first=first):
         for n in range(NF):
             t=n/(NF-1)
-            wf=K-(K-1.0)*t if zin else 1.0+(K-1.0)*t
+            wf=1.0 if first else (K-(K-1.0)*t if zin else 1.0+(K-1.0)*t)
             cw,ch=W*wf,VH*wf
             x0,y0=(BW-cw)/2,(BH-ch)/2
             vis=big.crop((int(x0),int(y0),int(x0+cw),int(y0+ch))).resize((W,VH),Image.LANCZOS)
