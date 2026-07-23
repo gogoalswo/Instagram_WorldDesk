@@ -172,7 +172,7 @@ def body_layer(card):
     for ln in wrap(card["sum"],fs,700):
         d.text((74,y),ln,font=fs,fill=SUB+(255,)); y+=57
     d.rectangle([74,1384,W-74,1386],fill=LINE+(255,))
-    d.text((74,1400),card["date"],font=f(F_MONO,28,0),fill=MUTE+(255,))
+    d.text((74,1400),card["date"],font=mono(card["date"],28),fill=MUTE+(255,))
     src=card["src"]; fo=mono(src,28)
     d.text((W-74-fo.getlength(src)-f(F_MONO,28,0).getlength("SOURCE ")),1400) if False else None
     lbl="SOURCE "; fl=f(F_MONO,28,0)
@@ -208,23 +208,23 @@ CARDS=[
  dict(v=v_tesla,tag="EARNINGS",stat=("TSLA · 시간외","-3%","EPS $0.33 · 컨센 $0.53",DOWN),
       h2=[[("사상 최대 매출인데",FG)],[("이익은 반 토막",AMBER)]],
       sum="테슬라 2분기 매출 282억 달러, 26% 증가. 그런데 잉여현금흐름은 11억 달러 적자로 돌아섰다.",
-      date="2026.07.22",src="Tesla IR · CNBC"),
+      date="2026년 7월 22일",src="Tesla IR · CNBC"),
  dict(v=v_wb,tag="OUTLOOK",stat=("GLOBAL GROWTH","1.3%","최악 시나리오 · 전년 2.9%",DOWN),
       h2=[[("세계은행 ",FG),("“성장률",AMBER)],[("반 토막”",AMBER),(" 경고",FG)]],
       sum="미국·이란 충돌이 커지면 물가가 다시 뛰고 금리가 밀려 올라간다. 성장률은 2.9%에서 1.3%까지.",
-      date="2026.07.22",src="World Bank · Reuters"),
+      date="2026년 7월 22일",src="World Bank · Reuters"),
  dict(v=v_oil,tag="ENERGY",stat=("BRENT CRUDE","$94.07","+3.4% · 한 달 최고",UP),
       h2=[[("브렌트유 ",FG),("94달러",AMBER)],[("돌파",FG)]],
       sum="미국의 대이란 공습이 11차례 이어지며 급등. WTI도 3% 올라 86.83달러로 마감했다.",
-      date="2026.07.22",src="CNBC · Reuters"),
+      date="2026년 7월 22일",src="CNBC · Reuters"),
  dict(v=v_japan,tag="JAPAN",stat=("TRADE BALANCE · JUN","-4,069억엔","예상 -1,200억엔",DOWN),
       h2=[[("수출 19% 늘었는데",FG)],[("적자는 3배",AMBER)]],
       sum="일본 6월 무역수지가 두 달 연속 마이너스. 수출은 3개월 만의 최고치를 찍었는데도 적자가 커졌다.",
-      date="2026.07.22",src="일본 재무성"),
+      date="2026년 7월 22일",src="일본 재무성"),
  dict(v=v_semi,tag="SEMICONDUCTOR",stat=("KOREA CHIP EXPORTS","약 3배","7월 초 · 전년 대비",UP),
       h2=[[("한국·대만 수출이",FG)],[("월가를 되살렸다",AMBER)]],
       sum="AI 수요 둔화 우려로 3거래일 밀렸던 미 증시가 아시아 수출 지표에 반도체주 중심으로 반등했다.",
-      date="2026.07.22",src="Rio Times Briefing"),
+      date="2026년 7월 22일",src="Rio Times Briefing"),
 ]
 
 def encode(path,gen):
