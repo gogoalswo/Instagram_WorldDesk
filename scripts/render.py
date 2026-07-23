@@ -3,7 +3,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 W, H = 1080, 1920
 VH = 1440                # 그래픽(사진) 영역 높이 — 하단 안전영역(480px) 위까지 꽉 채움
-FPS, DUR = 30, 5.0
+FPS, DUR = 30, 3.0       # 카드당 길이(초)
 NF = int(FPS * DUR)
 K = 1.09                 # 켄번스 오버스캔
 
