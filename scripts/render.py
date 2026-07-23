@@ -131,6 +131,21 @@ def v_googl():
 def v_airbus():
     return photo_bg("airbus_a350.jpg", fx=0.43, fy=0.48, dark=0.22) # AIRBUS A350 기체 (CC BY-SA 2.0)
 
+def v_smci():
+    return photo_bg("smci_campus.jpg", fx=0.53, fy=0.5, dark=0.38, top_fade=340)  # Supermicro 캠퍼스 (CC BY-SA 4.0)
+
+def v_tesla2():
+    return photo_bg("musk.jpg", fx=0.5, fy=0.3, dark=0.18)          # 일론 머스크 · 테슬라 CEO (CC BY 4.0)
+
+def v_tariff():
+    return photo_bg("von_der_leyen.jpg", fx=0.5, fy=0.25, dark=0.34, top_fade=340)  # 우르줄라 폰데어라이엔 · EU 집행위원장 (CC BY 4.0)
+
+def v_gold():
+    return photo_bg("gold_bars.jpg", fx=0.5, fy=0.5, dark=0.30)     # 금괴 (CC0)
+
+def v_europe():
+    return photo_bg("frankfurt_bull_bear.jpg", fx=0.52, fy=0.5, dark=0.28)  # 프랑크푸르트 증권거래소 황소·곰 동상 (CC BY-SA 2.5)
+
 # ─────────── 오버레이 ───────────
 # 사진이 카드 전체(안전영역 위까지)를 채우므로, 텍스트가 얹히는 구간마다 어둡기를
 # 다르게 줘서 "스탯 숫자 위는 사진이 좀 보이되, 본문 아래로 갈수록 완전히 어두워짐"을 만든다.
@@ -216,25 +231,25 @@ def outro_frames():
 def ease(t): return 1-(1-t)**3
 
 CARDS=[
- dict(v=v_rate,tag="RATES",stat=("FED HIKE ODDS","32%","1주 전 10.7% · 3배 급등",DOWN),
-      h2=[[("금리 인상 확률,",FG)],[("일주일 만에 3배",AMBER)]],
-      sum="미 2년물 국채금리가 17개월 만에 최고치. 유가 급등이 물가를 자극하며 7월 금리 인상 가능성이 커졌다.",
-      date="2026년 7월 23일",src="CME FedWatch · 뉴스핌"),
- dict(v=v_kospi,tag="KOREA",stat=("KOSPI","+2.88%","6,993.34 · 7000 목전",UP),
-      h2=[[("반도체가 끌어올린",FG)],[("코스피 7000 코앞",AMBER)]],
-      sum="삼성전자 +3.26%, SK하이닉스 +4.26%. AI 인프라 투자 기대감에 반도체주가 지수를 밀어올렸다.",
-      date="2026년 7월 23일",src="국제뉴스"),
- dict(v=v_oil2,tag="ENERGY",stat=("BRENT CRUDE","$91.01","+2.0% · 6주 최고",UP),
-      h2=[[("중동 리스크에",FG)],[("유가 6주 최고",AMBER)]],
-      sum="브렌트유가 배럴당 91달러를 돌파했다. WTI도 84.91달러로 함께 뛰며 인플레이션 우려를 자극했다.",
+ dict(v=v_smci,tag="AI INFRA",stat=("SMCI · 슈퍼마이크로","+19.84%","신규수주 600억 달러",UP),
+      h2=[[("AI 서버 수주가",FG)],[("하루 새 20% 터졌다",AMBER)]],
+      sum="슈퍼마이크로컴퓨터가 4분기 신규수주 600억 달러 돌파 소식에 하루 만에 19.84% 급등했다.",
+      date="2026년 7월 23일",src="뉴스핌"),
+ dict(v=v_tesla2,tag="EARNINGS",stat=("TSLA · 시간외","-2%","매출 282억 달러 · +26%",DOWN),
+      h2=[[("매출은 사상 최대인데",FG)],[("마진은 반토막",AMBER)]],
+      sum="테슬라 2분기 매출은 282억 달러로 26% 늘었지만 영업이익률은 1.4%로 주저앉았고, 잉여현금흐름은 11억 달러 적자로 돌아섰다.",
+      date="2026년 7월 23일",src="Tesla IR · 뉴스핌"),
+ dict(v=v_tariff,tag="TRADE",stat=("EU 대미 자동차관세","15%","기존 27.5% · 즉시 발효",UP),
+      h2=[[("자동차 관세 27.5%,",FG)],[("15%로 확정",AMBER)]],
+      sum="미국-EU 무역협정이 발효돼 자동차 관세가 27.5%에서 15%로 낮아졌다. 항공기·의약품은 0%, 철강은 50%로 유지됐다.",
+      date="2026년 7월 23일",src="뉴스핌 · Deccan Herald"),
+ dict(v=v_gold,tag="GOLD",stat=("GOLD · 온스당","$4,151.90","+1.9% · 2주 최고",UP),
+      h2=[[("불안할수록 산다,",FG)],[("금값 2주 최고",AMBER)]],
+      sum="중동 리스크와 금리 불확실성이 겹치며 금값이 온스당 4,151.90달러로 2주 만에 최고치를 찍었다.",
       date="2026년 7월 23일",src="뉴스핌 · Reuters"),
- dict(v=v_googl,tag="EARNINGS",stat=("GOOGLE CLOUD","+82%","백로그 514억 달러",UP),
-      h2=[[("알파벳 매출 24%↑",FG)],[("클라우드는 82%↑",AMBER)]],
-      sum="알파벳 2분기 매출 1,198억 달러. AI 인프라 수요로 클라우드가 급증했지만 자본지출도 전년의 2배로 늘었다.",
-      date="2026년 7월 23일",src="Alphabet IR · 한국경제"),
- dict(v=v_airbus,tag="AVIATION",stat=("AIRBUS","+7%","자사주 매입 50억 유로",UP),
-      h2=[[("에어버스, 목표 올리고",FG)],[("자사주 매입까지",AMBER)]],
-      sum="2029년 핵심이익 목표를 최대 130억 유로로 높이고 50억 유로 자사주 매입을 발표하며 주가가 뛰었다.",
+ dict(v=v_europe,tag="EUROPE",stat=("STOXX 600","646.93","+0.58% · 최고치",UP),
+      h2=[[("유럽 증시 랠리,",FG)],[("일제히 최고치",AMBER)]],
+      sum="독일 DAX, 영국 FTSE, 프랑스 CAC 등 유럽 주요 지수가 일제히 상승했다. 항공우주·방산 업종이 2.6% 오르며 상승을 이끌었다.",
       date="2026년 7월 23일",src="뉴스핌 · Reuters"),
 ]
 

@@ -11,14 +11,29 @@
 | `refinery.jpg` | 미나 알아흐마디 정유시설 야경 (쿠웨이트) | Public Domain | Grubb | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Mina-Al-Ahmadi_oil_refinery_night.jpg) |
 | `pichai.jpg` | 순다르 피차이 (알파벳·구글 CEO) | CC BY 4.0 | Lukasz Kobus / European Commission | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Sundar_Pichai_-_2023_(cropped).jpg) |
 | `airbus_a350.jpg` | Airbus A350 (첫 비행, "AIRBUS A350" 기체 도색) | CC BY-SA 2.0 | jacme31 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Airbus_A350_1st_flight_2013-06-14.jpg) |
+| `smci_campus.jpg` | Supermicro 캘리포니아 캠퍼스 ("SUPERMICRO" 로고 간판) | CC BY-SA 4.0 | SMCI (Superjackw) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Supermicro_Green_Computing_Park.jpg) |
+| `musk.jpg` | 일론 머스크 (테슬라 CEO) | CC BY 4.0 | Wcamp9 | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Elon_Musk_-_March_28,_2024_(cropped).jpg) |
+| `von_der_leyen.jpg` | 우르줄라 폰데어라이엔 (EU 집행위원장) | CC BY 4.0 | Etienne Ansotte / European Commission | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Official_Portrait_of_Ursula_von_der_Leyen_(cropped).jpg) |
+| `gold_bars.jpg` | 금괴 | CC0 (Public Domain) | Stevebidmead | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Gold_bullion_bars.jpg) |
+| `frankfurt_bull_bear.jpg` | 프랑크푸르트 증권거래소 황소·곰 동상 | CC BY-SA 2.5 | Eva K. | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Bulle_und_B%C3%A4r_Frankfurt.jpg) |
 
 ## 캡션 표기 (CC BY / CC BY-SA 사진 사용 회차에 첫 댓글로)
 
+**2026-07-23 (1) — 금리·코스피·유가·알파벳·에어버스 회차**
 ```
 사진 출처: Jerome H. Powell — Federal Reserve (Public Domain) ·
 이재용 — LEEJAEY68 (CC BY-SA 3.0, Wikimedia Commons) ·
 Sundar Pichai — Lukasz Kobus/European Commission (CC BY 4.0) ·
 Airbus A350 — jacme31 (CC BY-SA 2.0, Wikimedia Commons)
+```
+
+**2026-07-23 (2) — SMCI·테슬라·관세·금값·유럽증시 회차**
+```
+사진 출처: Supermicro Green Computing Park — SMCI (CC BY-SA 4.0, Wikimedia Commons) ·
+Elon Musk — Wcamp9 (CC BY 4.0, Wikimedia Commons) ·
+Ursula von der Leyen — Etienne Ansotte/European Commission (CC BY 4.0) ·
+Gold bullion bars — Stevebidmead (CC0) ·
+프랑크푸르트 황소·곰 동상 — Eva K. (CC BY-SA 2.5, Wikimedia Commons)
 ```
 
 ## 선정 기준
