@@ -1,0 +1,10 @@
+# 렌더 중간 산출물
+seg/
+frames/
+*.tmp
+__pycache__/
+*.pyc
+
+# 시스템 파일
+.DS_Store
+Thumbs.db

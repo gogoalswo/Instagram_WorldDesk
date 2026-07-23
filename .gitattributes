@@ -1,0 +1,12 @@
+# 텍스트 파일 개행 정규화
+*.md   text
+*.py   text
+*.html text
+*.txt  text
+
+# 바이너리
+*.png binary
+*.mp4 binary
+
+# 영상이 쌓이면 Git LFS 권장 (git lfs install 후 아래 주석 해제)
+# *.mp4 filter=lfs diff=lfs merge=lfs -text
