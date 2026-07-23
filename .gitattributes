@@ -6,6 +6,7 @@
 
 # 바이너리
 *.png binary
+*.jpg binary
 *.mp4 binary
 
 # 영상이 쌓이면 Git LFS 권장 (git lfs install 후 아래 주석 해제)

@@ -12,6 +12,7 @@ DATE = "2026-07-23"      # 회차 날짜 (출력 경로 · 카드 date 필드와
 OUT_DIR = os.path.join(ROOT, "out", DATE)
 os.makedirs(OUT_DIR, exist_ok=True)
 OUT = tempfile.mkdtemp(prefix="world-desk-seg-")
+PHOTO_DIR = os.path.join(ROOT, "assets", "photos")
 
 INK=(8,13,24); LINE=(30,46,74); AMBER=(242,179,61); UP=(55,217,160)
 DOWN=(255,91,110); FG=(238,243,250); MUTE=(124,144,172); SUB=(195,210,228)
@@ -86,51 +87,49 @@ class Cv:
         for y in range(0,s.img.size[1],5): od.rectangle([0,y,s.img.size[0],y+2],fill=(255,255,255,9))
         s.img=Image.alpha_composite(s.img.convert("RGBA"),ov).convert("RGB")
 
+# ─────────── 실사 이미지 (무료 라이선스 인물/건물 사진) ───────────
+def cover_crop(im, tw, th, fx=0.5, fy=0.5):
+    """im을 (tw,th)를 꽉 채우도록 확대 후, (fx,fy) 지점을 중심으로 크롭."""
+    im = im.convert("RGB")
+    sw, sh = im.size
+    scale = max(tw / sw, th / sh)
+    nw, nh = max(tw, round(sw * scale)), max(th, round(sh * scale))
+    im = im.resize((nw, nh), Image.LANCZOS)
+    cx, cy = nw * fx, nh * fy
+    x0 = min(max(0, cx - tw / 2), nw - tw)
+    y0 = min(max(0, cy - th / 2), nh - th)
+    return im.crop((int(x0), int(y0), int(x0 + tw), int(y0 + th)))
+
+def photo_bg(name, fx=0.5, fy=0.3, dark=0.28, top_fade=280):
+    """뉴스 관련 인물/건물 실사 사진을 그래픽 영역(W*K x VH*K)에 맞춰 브랜드 톤으로 보정."""
+    im = Image.open(os.path.join(PHOTO_DIR, name))
+    tw, th = int(W * K), int(VH * K)
+    im = cover_crop(im, tw, th, fx, fy)
+    im = Image.blend(im, Image.new("RGB", im.size, INK), dark)          # 브랜드 다크톤 통일
+    grad = Image.new("L", im.size, 0); gd = ImageDraw.Draw(grad)
+    tf = int(top_fade * K)
+    for y in range(tf):
+        gd.line([(0, y), (im.size[0], y)], fill=int(255 * (1 - y / tf) ** 1.05))
+    im = Image.composite(Image.new("RGB", im.size, (0, 0, 0)), im, grad)  # 상단 인스타 UI 존 대비 확보
+    ov = Image.new("RGBA", im.size, (0, 0, 0, 0)); od = ImageDraw.Draw(ov)
+    for y in range(0, im.size[1], 5): od.rectangle([0, y, im.size[0], y + 2], fill=(255, 255, 255, 6))
+    return Image.alpha_composite(im.convert("RGBA"), ov).convert("RGB")
+
+# 출처·라이선스 전문은 assets/photos/CREDITS.md 참조 (전부 PD 또는 CC-BY 계열, 보도사진 아님)
 def v_rate():
-    c=Cv(); c.grad((42,12,14),(10,16,24))
-    for y in (300,500,700): c.line([(0,y),(1080,y)],(74,42,42),2)
-    c.rect(230,700,190,120,MUTE,200); c.line([(325,700),(325,644)],MUTE,5)
-    c.rect(660,468,190,352,DOWN,255); c.line([(755,468),(755,388)],DOWN,5)
-    c.line([(420,690),(660,478)],DOWN,7)
-    c.ell(660,478,15,15,fill=DOWN); c.grain(); return c.img
+    return photo_bg("powell.jpg", fx=0.5, fy=0.28, dark=0.34)      # 제롬 파월 · 연준 의장 (PD)
 
 def v_kospi():
-    c=Cv(); c.grad((10,30,22),(9,15,24))
-    for y in (300,500,700): c.line([(0,y),(1080,y)],(42,74,58),2)
-    bars=[(150,540,60,UP),(268,492,108,UP),(386,430,170,UP),(504,368,232,UP),
-          (622,314,286,UP),(740,252,348,UP),(858,198,402,UP)]
-    for x,y,h,col in bars:
-        c.rect(x,y,56,h,col); c.line([(x+28,y-30),(x+28,y+h+18)],col,5)
-    c.grain(); return c.img
+    return photo_bg("lee_jaeyong.jpg", fx=0.5, fy=0.26, dark=0.32, top_fade=340)  # 이재용 · 삼성전자 회장 (CC BY-SA 3.0)
 
 def v_oil2():
-    c=Cv(); c.grad((58,34,8),(10,16,23),True)
-    for y in (260,460,660): c.line([(0,y),(1080,y)],(74,58,34),2)
-    pts=[(0,760),(135,706),(270,668),(405,616),(540,566),(675,522),(810,468),(945,428),(1080,390)]
-    c.poly(pts+[(1080,880),(0,880)],AMBER,34); c.line(pts,AMBER,9)
-    c.ell(1030,402,20,20,fill=AMBER); c.grain(); return c.img
+    return photo_bg("refinery.jpg", fx=0.5, fy=0.55, dark=0.08)     # 미나 알아흐마디 정유시설 야경 (PD)
 
 def v_googl():
-    c=Cv(); c.grad((8,22,40),(10,54,64),True)
-    for p in [[(410,240),(670,240)],[(670,240),(670,500)],[(670,500),(410,500)],[(410,500),(410,240)]]:
-        c.line(p,UP,4,a=130)
-    for p in [[(455,240),(455,150)],[(540,240),(540,120)],[(625,240),(625,150)],
-              [(455,500),(455,590)],[(540,500),(540,620)],[(625,500),(625,590)],
-              [(410,285),(310,285)],[(410,370),(280,370)],[(410,455),(310,455)],
-              [(670,285),(770,285)],[(670,370),(800,370)],[(670,455),(770,455)]]:
-        c.line(p,UP,4,a=130)
-    c.rect(462,292,156,156,UP,50)
-    for x,y,h in ((250,560,40),(356,492,108),(462,396,204),(568,308,292),(674,216,384),(780,144,456)):
-        c.rect(x,y,66,h,UP,230)
-    c.grain(); return c.img
+    return photo_bg("pichai.jpg", fx=0.5, fy=0.26, dark=0.30)       # 순다르 피차이 · 알파벳/구글 CEO (CC BY 4.0)
 
 def v_airbus():
-    c=Cv(); c.grad((16,26,46),(8,14,24),True)
-    pts=[(0,780),(200,712),(400,616),(600,486),(800,352),(1000,236),(1080,196)]
-    c.poly(pts+[(1080,880),(0,880)],UP,26); c.line(pts,UP,9)
-    c.ell(1055,208,22,22,fill=UP)
-    for rx in (60,100,140): c.ell(1055,208,rx,rx,outline=UP,w_=2,a=70)
-    c.grain(); return c.img
+    return photo_bg("airbus_a350.jpg", fx=0.58, fy=0.48, dark=0.22) # AIRBUS A350 기체 (CC BY-SA 2.0)
 
 # ─────────── 오버레이 ───────────
 def bg_layer():

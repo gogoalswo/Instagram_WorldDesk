@@ -59,7 +59,7 @@ python3 scripts/profile.py    # → assets/profile-{a,b,c}.png
 | 날짜 표기 | `YYYY년 M월 D일`로 년·월·일 모두 표기 (`YYYY.MM.DD` 축약 금지) |
 | 카드 순서 | **가장 자극적인 기사를 1번**에 |
 | 안전영역 | 상단 160 / 하단 480 / 우측 250 px는 인스타 UI — 본문 배치 금지 |
-| 이미지 | 보도사진 사용 안 함. 데이터 그래픽으로 직접 그림 |
+| 이미지 | 무료 라이선스(PD/CC0/CC BY/CC BY-SA) 실사 사진, 인물 우선 · 없으면 회사 로고 나온 건물/제품. 보도사진 금지 |
 
 전체 스펙(절대좌표 레이아웃, 디자인 토큰, 애니메이션 타이밍)은 [`docs/HANDOFF.md`](docs/HANDOFF.md) 참조.
 
@@ -71,7 +71,9 @@ python3 scripts/profile.py    # → assets/profile-{a,b,c}.png
 2. `scripts/render.py`의 `CARDS` 갱신
    - `tag` 카테고리 / `stat` (라벨, 대형수치, 보조수치, 색) / `h2` **줄바꿈 수동 지정** / `sum` / `date`(`YYYY년 M월 D일`) / `src`
    - 헤드라인 한 줄 최대 폭 756px ≈ 한글 11~12자
-3. 뉴스에 맞는 그래픽 함수 `v_*()` 작성 또는 수정
+3. 뉴스에 맞는 무료 라이선스 사진(인물 우선)을 위키미디어 커먼즈 등에서 찾아
+   `assets/photos/`에 저장하고 `assets/photos/CREDITS.md`에 출처·라이선스 기록,
+   `v_*()`에서 `photo_bg()`로 연결 (또는 사진이 마땅치 않으면 그래픽 함수 작성)
 4. 출력 경로의 날짜 변경 후 렌더
 5. `CHANGELOG.md`에 회차 기록
 
