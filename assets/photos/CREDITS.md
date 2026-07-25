@@ -16,6 +16,11 @@
 | `von_der_leyen.jpg` | 우르줄라 폰데어라이엔 (EU 집행위원장) | CC BY 4.0 | Etienne Ansotte / European Commission | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Official_Portrait_of_Ursula_von_der_Leyen_(cropped).jpg) |
 | `gold_bars.jpg` | 금괴 | CC0 (Public Domain) | Stevebidmead | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Gold_bullion_bars.jpg) |
 | `frankfurt_bull_bear.jpg` | 프랑크푸르트 증권거래소 황소·곰 동상 | CC BY-SA 2.5 | Eva K. | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Bulle_und_B%C3%A4r_Frankfurt.jpg) |
+| `ueda.jpg` | 우에다 가즈오 (일본은행 총재) | CC BY 4.0 | Cabinet Public Relations Office | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Kazuo_Ueda_on_October_2,_2024.jpg) |
+| `lagarde.jpg` | 크리스틴 라가르드 (ECB 총재) | Public Domain | IMF (사진가 미상) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Lagarde,_Christine_(official_portrait_2011)_(cropped).jpg) |
+| `bok_building.jpg` | 한국은행 본관 야경 | CC BY 3.0 | 우한길(HK Woo) | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:한국은행_본점_-_panoramio.jpg) |
+| `dol_building.jpg` | 미국 노동부(Frances Perkins Building) 청사 | CC BY-SA 3.0 | AgnosticPreachersKid | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:U.S._Department_of_Labor_headquarters.JPG) |
+| `gate_lng.jpg` | GATE LNG 터미널 (로테르담) | CC0 (Public Domain) | rijksoverheid | [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:GATE_terminal_Rotterdam.jpg) |
 
 ## 캡션 표기 (CC BY / CC BY-SA 사진 사용 회차에 첫 댓글로)
 
@@ -34,6 +39,15 @@ Elon Musk — Wcamp9 (CC BY 4.0, Wikimedia Commons) ·
 Ursula von der Leyen — Etienne Ansotte/European Commission (CC BY 4.0) ·
 Gold bullion bars — Stevebidmead (CC0) ·
 프랑크푸르트 황소·곰 동상 — Eva K. (CC BY-SA 2.5, Wikimedia Commons)
+```
+
+**2026-07-23 (3) — 엔화·美실업수당·ECB·원화·유럽가스 회차**
+```
+사진 출처: Kazuo Ueda — Cabinet Public Relations Office (CC BY 4.0, Wikimedia Commons) ·
+Christine Lagarde — IMF (Public Domain) ·
+한국은행 본점 — 우한길/HK Woo (CC BY 3.0, Wikimedia Commons) ·
+U.S. Department of Labor headquarters — AgnosticPreachersKid (CC BY-SA 3.0, Wikimedia Commons) ·
+GATE LNG terminal Rotterdam — rijksoverheid (CC0)
 ```
 
 ## 선정 기준

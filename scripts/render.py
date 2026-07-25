@@ -146,6 +146,21 @@ def v_gold():
 def v_europe():
     return photo_bg("frankfurt_bull_bear.jpg", fx=0.52, fy=0.5, dark=0.28)  # 프랑크푸르트 증권거래소 황소·곰 동상 (CC BY-SA 2.5)
 
+def v_yen():
+    return photo_bg("ueda.jpg", fx=0.5, fy=0.28, dark=0.32)          # 우에다 가즈오 · 일본은행 총재 (CC BY 4.0)
+
+def v_jobs():
+    return photo_bg("dol_building.jpg", fx=0.43, fy=0.5, dark=0.30)  # 미 노동부 청사 (CC BY-SA 3.0)
+
+def v_ecb():
+    return photo_bg("lagarde.jpg", fx=0.5, fy=0.25, dark=0.22)       # 크리스틴 라가르드 · ECB 총재 (PD)
+
+def v_won():
+    return photo_bg("bok_building.jpg", fx=0.5, fy=0.5, dark=0.14)   # 한국은행 본관 야경 (CC BY 3.0)
+
+def v_gas():
+    return photo_bg("gate_lng.jpg", fx=0.5, fy=0.5, dark=0.30)       # GATE LNG 터미널 로테르담 (CC0)
+
 # ─────────── 오버레이 ───────────
 # 사진이 카드 전체(안전영역 위까지)를 채우므로, 텍스트가 얹히는 구간마다 어둡기를
 # 다르게 줘서 "스탯 숫자 위는 사진이 좀 보이되, 본문 아래로 갈수록 완전히 어두워짐"을 만든다.
@@ -182,7 +197,7 @@ def top_layer(card,idx):
     lab,big,small,bc=card["stat"]
     tracked(d,(74,602),lab,mono(lab,30),MUTE+(255,),6)
     d.text((74,640),big,font=f(F_BLACK,132),fill=bc+(255,))
-    tracked(d,(74,640+128+22),small,mono(small,34),bc+(255,),1)
+    tracked(d,(74,640+128+42),small,mono(small,34),bc+(255,),1)
     return l
 
 def body_layer(card):
@@ -231,26 +246,26 @@ def outro_frames():
 def ease(t): return 1-(1-t)**3
 
 CARDS=[
- dict(v=v_smci,tag="AI INFRA",stat=("SMCI · 슈퍼마이크로","+19.84%","신규수주 600억 달러",UP),
-      h2=[[("AI 서버 수주가",FG)],[("하루 새 20% 터졌다",AMBER)]],
-      sum="슈퍼마이크로컴퓨터가 4분기 신규수주 600억 달러 돌파 소식에 하루 만에 19.84% 급등했다.",
+ dict(v=v_yen,tag="JAPAN",stat=("USD/JPY","163엔","39년 7개월 만에 최저",DOWN),
+      h2=[[("엔화, 39년 만에",FG)],[("최저치 뚫렸다",AMBER)]],
+      sum="엔화 가치가 달러당 163엔을 넘어서며 1987년 이후 최저 수준으로 떨어졌다. 일본은행의 추가 금리 인상 압박이 커지고 있다.",
       date="2026년 7월 23일",src="뉴스핌"),
- dict(v=v_tesla2,tag="EARNINGS",stat=("TSLA · 시간외","-2%","매출 282억 달러 · +26%",DOWN),
-      h2=[[("매출은 사상 최대인데",FG)],[("마진은 반토막",AMBER)]],
-      sum="테슬라 2분기 매출은 282억 달러로 26% 늘었지만 영업이익률은 1.4%로 주저앉았고, 잉여현금흐름은 11억 달러 적자로 돌아섰다.",
-      date="2026년 7월 23일",src="Tesla IR · 뉴스핌"),
- dict(v=v_tariff,tag="TRADE",stat=("EU 대미 자동차관세","15%","기존 27.5% · 즉시 발효",UP),
-      h2=[[("자동차 관세 27.5%,",FG)],[("15%로 확정",AMBER)]],
-      sum="미국-EU 무역협정이 발효돼 자동차 관세가 27.5%에서 15%로 낮아졌다. 항공기·의약품은 0%, 철강은 50%로 유지됐다.",
-      date="2026년 7월 23일",src="뉴스핌 · Deccan Herald"),
- dict(v=v_gold,tag="GOLD",stat=("GOLD · 온스당","$4,151.90","+1.9% · 2주 최고",UP),
-      h2=[[("불안할수록 산다,",FG)],[("금값 2주 최고",AMBER)]],
-      sum="중동 리스크와 금리 불확실성이 겹치며 금값이 온스당 4,151.90달러로 2주 만에 최고치를 찍었다.",
-      date="2026년 7월 23일",src="뉴스핌 · Reuters"),
- dict(v=v_europe,tag="EUROPE",stat=("STOXX 600","646.93","+0.58% · 최고치",UP),
-      h2=[[("유럽 증시 랠리,",FG)],[("일제히 최고치",AMBER)]],
-      sum="독일 DAX, 영국 FTSE, 프랑스 CAC 등 유럽 주요 지수가 일제히 상승했다. 항공우주·방산 업종이 2.6% 오르며 상승을 이끌었다.",
-      date="2026년 7월 23일",src="뉴스핌 · Reuters"),
+ dict(v=v_jobs,tag="LABOR",stat=("美 신규 실업수당","18.7만 건","57년 만에 최저",UP),
+      h2=[[("미국 실업수당 청구,",FG)],[("57년 만에 최저",AMBER)]],
+      sum="지난주 미국 신규 실업수당 청구가 18만 7천 건으로 줄며 1969년 이후 최저치를 기록했다. 예상치 21만 2천 건도 크게 밑돌았다.",
+      date="2026년 7월 23일",src="뉴스핌 · 美 노동부"),
+ dict(v=v_ecb,tag="ECB",stat=("ECB 기준금리","2.25%","동결 · 9월 인상 시사",AMBER),
+      h2=[[("라가르드 금리는 동결",FG)],[("9월 인상 예고",AMBER)]],
+      sum="ECB가 기준금리를 2.25%로 동결했다. 라가르드 총재는 에너지發 물가 충격이 아직 다 반영되지 않았다며 9월 인상 가능성을 열어뒀다.",
+      date="2026년 7월 23일",src="뉴스핌 · Bloomberg"),
+ dict(v=v_won,tag="KOREA",stat=("USD/KRW","1,466.80원","-13.30원 · 강세",UP),
+      h2=[[("원화 강세,",FG)],[("환율 1,466원대",AMBER)]],
+      sum="원/달러 환율이 전 거래일보다 13.30원 내린 1,466.80원에 마감했다. 엔화·유로화도 함께 출렁였다.",
+      date="2026년 7월 23일",src="뉴스핌"),
+ dict(v=v_gas,tag="GAS",stat=("EU 천연가스","$750+","4개월 만에 돌파 · 이후 $729",UP),
+      h2=[[("유럽 천연가스,",FG)],[("4개월 만에 750달러",AMBER)]],
+      sum="유럽 천연가스 가격이 1000㎥당 750달러를 넘어섰다가 729달러로 되밀렸다. 지난 3월 이후 처음으로 750달러 선을 뚫었다.",
+      date="2026년 7월 23일",src="뉴스핌"),
 ]
 
 def encode(path,gen):
